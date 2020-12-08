@@ -1,6 +1,6 @@
 "Starch" by Dan Bowen
 
-The release number is 4.
+The release number is 5.
 Include Exit Lister by Gavin Lambert.
 
 The foyer is a room. a room can be slippery.  A room has a number called slips. The slips of a room is usually 0. 
@@ -26,38 +26,47 @@ When play begins:
 Understand "spray [something] on/in/at [something]" as spraying it on.
 Understand the command "use" as "spray";
 
-Spraying it on is an action applying to two things.
-Understand "spray [something] with [something]" as spraying it with.
+Spraying it on is an action applying to thing and one thing.
+Understand "spray [something] with [something] " as spraying it with.
 Spraying it with is an action applying to two things. Carry out spraying it with: try spraying the second noun on the noun instead.
 
-
-Does the player mean spraying starch on the starch: it is very unlikely.
-Does the player mean spraying starch on the noun: it is very likely.
-Does the player mean spraying starch on air: it is likely.
-Does the player mean spraying the noun on the air: it is possible.
-Does the player mean spraying the noun on the starch: it is very unlikely.
-Does the player mean spraying the noun on the noun: it is very unlikely.
-
+[
 Rule for supplying a missing second noun while spraying (this is the spraying things without mentioning starch rule): 
 	if the starch is carried:
+		say "no 2nd.";
 		now the second noun is the noun;
 		now the noun is the starch;
 		Rule succeeds;
 	If the starch is not carried:
+		say "no starch";
 		rule fails;
+		]
 		
-Understand "spray" as a mistake ("Huh?").		
+Understand "spray" as a mistake ("Huh?").	
+
+Does the player mean spraying starch on the starch: it is very unlikely.
+Does the player mean spraying starch on the second noun: it is very likely.
+Does the player mean spraying starch on air: it is likely.
+Does the player mean spraying the noun on the air: it is possible.
+Does the player mean spraying the noun on the starch: it is very unlikely.
+[Does the player mean spraying the noun on the noun: it is very unlikely.]
+
 
 Check spraying it on:
-	if the noun is the starch:
-		[prevent it from spraying itself]
+	if the second noun is nothing:
+		now the second noun is the noun;
+		now the noun is starch;
+	if the noun is starch and the player holds the starch:
+			[prevent it from spraying itself]
 		if the second noun is the starch, say "You'd need some complicated tubing to do that." instead;
 		if the second noun is the player, say "A glistening mist whooshes into your face.";
 		If the second noun is not the floor:
 			say "the [second noun] looks a little more professional now.";
 	otherwise:
+		say "you don't have anything to spray with!" instead;
+	[otherwise:
 		[prevent anything but starch from spraying]
-		say "[The noun] would probably have to go to college for that sort of thing." instead;
+		say "[The noun] would probably have to go to college for that sort of thing." instead;]
 
 Carry out spraying it on:
 	if the second noun is a floor:
@@ -129,4 +138,5 @@ Before going from anywhere when the player is blind:
 after going somewhere when the player is blind:
 	now the location is dark;
 
+Test me with " spray starch on floor / spray floor / spray me / spray floor on me ";
  	
