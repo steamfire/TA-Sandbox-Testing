@@ -1,17 +1,27 @@
 "Starch" by Dan Bowen
 
 The release number is 6.
-The story headline is "A can of spray starch with various consequences.";
+The story headline is "Commit ".
+The story description is "A can of spray starch with various consequences."
 Include Exit Lister by Gavin Lambert.
 
-The foyer is a room. a room can be slippery.  A room has a number called slips. The slips of a room is usually 0. 
- 
-The hall is west of the foyer. there is a dog in the hall.
-The dining room is south of the foyer.
-The livingroom is east of the foyer.
-The kitchen is east of the dining room.
+[Lots of flourishes added for beta testers]
 
-Hard floored rooms is a region.  The kitchen and foyer are in hard floored rooms.  
+Part 1 - Starch World
+
+When play begins:
+	say "Get the can of starch and experiment with spraying.";
+
+The Foyer is a room. "A room with a hard floor.".  a room can be slippery.  A room has a number called slips. The slips of a room is usually 0. 
+
+The dog is a female person.
+ 
+The Hall is west of the foyer.  "A long hallway with a rug.". There is a dog in the hall.
+The Dining Room is south of the foyer. "A green room with a rug.".  There is a table in the dining room.  The table is fixed in place.
+The Living Room is east of the foyer. "A tastefully appointed room with a rug.".  The couch is an enterable supporter.  The couch is in the living room.  The couch is fixed in place.
+The Kitchen is east of the dining room. "A room with a hard floor.".   There is a clock in the kitchen.  The description of the clock is "[the time of day]".
+
+Hard floored rooms is a region.  The kitchen and foyer are in hard floored rooms. 
 Rug floored rooms is a region.  The hall, living room, and dining room are in rug floored rooms.
 
  A hard floor is a backdrop in the hard floored rooms.
@@ -19,20 +29,17 @@ a rug floor is a backdrop in the rug floored rooms.
 
 The air is a backdrop.  the air is everywhere.
 
-A can of starch is a thing.
+A spray can of starch is a thing. The description of the starch is "A small spray can of sizing.  Generally used for ironing things.  Use inconsistent with labelling is probably to be expected." There is a starch is in the foyer.
 
 Rule for reaching inside a room: 
     say "There's nothing here to do that with."; 
     deny access.
-
-When play begins:
-	Now The player is carrying a can of starch;
 	
 Understand "spray [something] on/in/at [something]" as spraying it on.
-Understand the command "use" as "spray";
 
 Spraying it on is an action applying to thing and one thing.
 Understand "spray [something] with [something] " as spraying it with.
+Understand "use [something]" as a mistake ("(try SPRAY)").
 Spraying it with is an action applying to two things. Carry out spraying it with: try spraying the second noun on the noun instead.
 
 short spraying is an action applying to one thing.
@@ -41,6 +48,8 @@ Understand "spray [something]" as short spraying.
 Check short spraying:
 	if the noun is nothing:
 		try spraying the air with starch;
+	if the noun is the can:  [This takes care of just saying SPRAY CAN]
+		try spraying the air with the starch;
 	otherwise:
 		try spraying the noun with the starch;
 
@@ -57,19 +66,30 @@ Check spraying it on:
 		now the second noun is the noun;
 		now the noun is starch;
 	if the noun is starch and the player holds the starch:
-			[prevent it from spraying itself]
-		if the second noun is the starch, say "You'd need some complicated tubing to do that." instead;
-		if the second noun is the player, say "A glistening mist whooshes into your face.";
-		If the second noun is not the floor:
+		if the second noun is the starch:  [Prevent it from spraying itself]
+			say "You'd need some complicated tubing to make it spray itself." instead;
+		else if the second noun is the player:
+			say "A glistening mist whooshes into your face.";
+		else if the second noun is the dog:
+			say "'Grrrr...' mutters the dog as it trots away.";
+			Now the dog is in a random adjacent room;
+		else If the second noun is not the floor:
 			if the second noun is the air:
 				say "psssssst....  the mist of starch billows.";
 			Otherwise:
-			 	say "the [second noun] looks a little more professional now.";
+			 	say "the [second noun] looks a little more professional.";
 	otherwise:
 		say "you don't have anything to spray with!" instead;
-	[otherwise:
-		[prevent anything but starch from spraying]
-		say "[The noun] would probably have to go to college for that sort of thing." instead;]
+		
+
+Instead of spraying the starch on the dog for the third time:
+	say "the dog nips that can from your hands and sprays you with it!";
+	try spraying the player with starch;
+	Now the starch can is in the location;
+
+instead of spraying the starch on the dog for the fourth time:
+	say "The dog tells your mother, and now you're in trouble.";
+	End the story;
 
 Carry out spraying it on:
 	if the second noun is a floor:
@@ -84,7 +104,7 @@ Carry out spraying it on:
 Report spraying it on:
 	if the second noun is a floor:
 		say "A light, fresh spray of mist settles on [the second noun][if the location is in the rug floored rooms]. It becomes nicely stiff and crunchy under your feet[otherwise]. You notice a glossy sheen on it[end if].";
-	if the second noun is the player, say "There you go, all stiff and presentable.";
+	if the second noun is the player, say "There you go, stiff and presentable.";
 	
 Before going from a room that is slippery:
 	say "You slide across the slippery [location] floor, unable to control where you end up!";
@@ -104,13 +124,11 @@ After going to a room that is slippery:
 		rule fails;
 
 	
-Part 1 - Eyes Glued Shut
+Part 2 - Eyes Glued Shut
 
 Eyes are a kind of thing.  Eyes are a part of every person.
 
 A person can be blind or sighted. A person is usually sighted. [The player is blind.]
-The player carries a can of starch.
-
 
 At the time when starch wears off you:
 	say "Ick, your welling tears have finally melted that starch out of your eyes.";
@@ -141,5 +159,26 @@ Before going from anywhere when the player is blind:
 after going somewhere when the player is blind:
 	now the location is dark;
 
-Test me with " spray starch on floor / spray floor / spray me / spray floor on me ";
+Test me with " get can / spray starch / on floor / spray me / spray floor on me ";
+
+
+Part 3 - Hints
+
+Understand "help" or "hint" or "hints" or "instructions" or "info" or "about" as asking for help. Asking for help is an action out of world. 
+
+Carry out asking for help: say "The following commands are understood, in addition to the standard ones:  SPRAY."
  	
+
+Understand "amusing" as asking for fun stuff.  Asking for fun stuff is an action out of world.
+
+Carry out asking for fun stuff: 
+	say "[bold type]Have you tried-[paragraph break][roman type]
+Spraying the different kinds of floors?[line break]
+going somewhere after spraying the hard floor?[line break]
+Spraying the dog?[line break]
+Spraying the dog multiple times?[line break]
+Spraying yourself?[line break]
+Spraying?[line break]
+Spraying the starch with the starch?[line break]
+Opening your eyes?[line break]";
+
