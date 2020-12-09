@@ -44,27 +44,12 @@ Check short spraying:
 	otherwise:
 		try spraying the noun with the starch;
 
-[
-Rule for supplying a missing second noun while spraying (this is the spraying things without mentioning starch rule): 
-	if the starch is carried:
-		say "no 2nd.";
-		now the second noun is the noun;
-		now the noun is the starch;
-		Rule succeeds;
-	If the starch is not carried:
-		say "no starch";
-		rule fails;
-		]
-		
-[Understand "spray" as a mistake ("Huh?").	]
-
 Does the player mean short spraying the air: it is very likely;
 Does the player mean spraying starch on the starch: it is very unlikely.
 Does the player mean spraying starch on the second noun: it is possible.
 Does the player mean spraying starch on the air: it is likely.
 Does the player mean spraying the noun on the air: it is possible.
 Does the player mean spraying the noun on the starch: it is very unlikely.
-[Does the player mean spraying the noun on the noun: it is very unlikely.]
 
 
 Check spraying it on:
