@@ -1,7 +1,7 @@
 "Starch" by Dan Bowen
 
-The release number is 6.
-The story headline is "Commit  - MIT License, Copyright 2020".
+The release number is 7.
+The story headline is "Commit 9958aff - MIT License, Copyright 2020".
 The story description is "A can of spray starch with various consequences."
 Include Exit Lister by Gavin Lambert.
 
