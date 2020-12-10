@@ -1,7 +1,7 @@
 "Starch" by Dan Bowen
 
 The release number is 6.
-The story headline is "Commit ".
+The story headline is "Commit  - MIT License, Copyright 2020".
 The story description is "A can of spray starch with various consequences."
 Include Exit Lister by Gavin Lambert.
 
@@ -10,14 +10,14 @@ Include Exit Lister by Gavin Lambert.
 Part 1 - Starch World
 
 When play begins:
-	say "Get the can of starch and experiment with spraying.";
+	say "Get the can of starch and experiment with spraying. For spoilers of all the things you can do, type AMUSING.";
 
 The Foyer is a room. "A room with a hard floor.".  a room can be slippery.  A room has a number called slips. The slips of a room is usually 0. 
 
 The dog is a female person.
  
 The Hall is west of the foyer.  "A long hallway with a rug.". There is a dog in the hall.
-The Dining Room is south of the foyer. "A green room with a rug.".  There is a table in the dining room.  The table is fixed in place.
+The Dining Room is south of the foyer. "A green room with a rug.".  There is a table in the dining room.  The table is supporter that is fixed in place.
 The Living Room is east of the foyer. "A tastefully appointed room with a rug.".  The couch is an enterable supporter.  The couch is in the living room.  The couch is fixed in place.
 The Kitchen is east of the dining room. "A room with a hard floor.".   There is a clock in the kitchen.  The description of the clock is "[the time of day]".
 
@@ -32,7 +32,8 @@ The air is a backdrop.  the air is everywhere.
 A spray can of starch is a thing. The description of the starch is "A small spray can of sizing.  Generally used for ironing things.  Use inconsistent with labelling is probably to be expected." There is a starch is in the foyer.
 
 Rule for reaching inside a room: 
-    say "There's nothing here to do that with."; 
+	say "You don't have [the second noun]";
+[    say "There's nothing here to do that with."; ]
     deny access.
 	
 Understand "spray [something] on/in/at [something]" as spraying it on.
@@ -71,7 +72,7 @@ Check spraying it on:
 		else if the second noun is the player:
 			say "A glistening mist whooshes into your face.";
 		else if the second noun is the dog:
-			say "'Grrrr...' mutters the dog as it trots away.";
+			say "[one of]The dog looks askance at you, and wanders off.[or]'Grrrr...' mutters the dog as it trots away.[stopping]";
 			Now the dog is in a random adjacent room;
 		else If the second noun is not the floor:
 			if the second noun is the air:
@@ -80,7 +81,7 @@ Check spraying it on:
 			 	say "the [second noun] looks a little more professional.";
 	otherwise:
 		say "you don't have anything to spray with!" instead;
-		
+
 
 Instead of spraying the starch on the dog for the third time:
 	say "the dog nips that can from your hands and sprays you with it!";
@@ -123,6 +124,9 @@ After going to a room that is slippery:
 		Move the player to a random adjacent room;
 		rule fails;
 
+Understand "pet [a person]" as touching.
+Instead of touching the dog:
+	say "The dog now approves of your choices in life.";
 	
 Part 2 - Eyes Glued Shut
 
@@ -166,7 +170,7 @@ Part 3 - Hints
 
 Understand "help" or "hint" or "hints" or "instructions" or "info" or "about" as asking for help. Asking for help is an action out of world. 
 
-Carry out asking for help: say "The following commands are understood, in addition to the standard ones:  SPRAY."
+Carry out asking for help: say "The following commands are understood, in addition to the standard ones:  SPRAY  PET."
  	
 
 Understand "amusing" as asking for fun stuff.  Asking for fun stuff is an action out of world.
@@ -180,5 +184,6 @@ Spraying the dog multiple times?[line break]
 Spraying yourself?[line break]
 Spraying?[line break]
 Spraying the starch with the starch?[line break]
-Opening your eyes?[line break]";
+Opening your eyes?[line break]
+Petting the dog?";
 

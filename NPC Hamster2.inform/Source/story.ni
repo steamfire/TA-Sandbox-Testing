@@ -4,6 +4,8 @@ The story headline is "Version 2 - A small rodent test simulator"
 
 Release along with cover art ("A Hamster pooping in a cage.").
 
+
+Include (- Switches z; -) after "ICL Commands" in "Output.i6t".
 Include Exit lister by Gavin Lambert.
 
 [The hamster does things on every even turn.  It will escape fromt he cage if the door is open.  It will run to adjacent rooms.  It will squirm from your inventory after X moves.  It poops before leaving a room.]
