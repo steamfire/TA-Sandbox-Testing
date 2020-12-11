@@ -33,14 +33,14 @@ A spray can of starch is a thing. The description of the starch is "A small spra
 
 Rule for reaching inside a room: 
 	say "You don't have [the second noun]";
-[    say "There's nothing here to do that with."; ]
     deny access.
 	
 Understand "spray [something] on/in/at [something]" as spraying it on.
+Understand "spray [something] with [something] " as spraying it with.
+Understand "use [can]" as a mistake ("(try saying SPRAY)") when the player holds the can.
+Understand "use [something]" as a mistake ("You can't use that. [if the player is not holding the noun] You're not holding it.").
 
 Spraying it on is an action applying to thing and one thing.
-Understand "spray [something] with [something] " as spraying it with.
-Understand "use [something]" as a mistake ("(try SPRAY)").
 Spraying it with is an action applying to two things. Carry out spraying it with: try spraying the second noun on the noun instead.
 
 short spraying is an action applying to one thing.
@@ -104,12 +104,13 @@ Carry out spraying it on:
 		
 Report spraying it on:
 	if the second noun is a floor:
-		say "A light, fresh spray of mist settles on [the second noun][if the location is in the rug floored rooms]. It becomes nicely stiff and crunchy under your feet[otherwise]. You notice a glossy sheen on it[end if].";
+		Now the description of the floor is "It looks shiny and slick now.";
+		say "A light, fresh spray of mist settles on [the second noun].[no line break][if the location is in the rug floored rooms] It becomes nicely stiff and crunchy under your feet.[otherwise]  [description of the floor]";
 	if the second noun is the player, say "There you go, stiff and presentable.";
 	
 Before going from a room that is slippery:
-	say "You slide across the slippery [location] floor, unable to control where you end up!";
 	Move the player to a random adjacent room;
+	say "You slide across the slippery [location] floor, unable to control where you end up!";
 	rule fails;
 
 After going to a room that is slippery:	
@@ -135,10 +136,9 @@ Eyes are a kind of thing.  Eyes are a part of every person.
 A person can be blind or sighted. A person is usually sighted. [The player is blind.]
 
 At the time when starch wears off you:
-	say "Ick, your welling tears have finally melted that starch out of your eyes.";
 	now the player is sighted;
 	now the location is not dark;
-	try looking;
+	say "Ick, your welling tears have finally melted that starch out of your eyes.";
 
 Rule for listing nondescript items when the player is blind: 
 	say "".
@@ -163,7 +163,8 @@ Before going from anywhere when the player is blind:
 after going somewhere when the player is blind:
 	now the location is dark;
 
-Test me with " get can / spray starch / on floor / spray me / spray floor on me ";
+Test me with " get can / spray me / z / z / z/ z/ z/ z/ z";
+
 
 
 Part 3 - Hints
