@@ -43,6 +43,9 @@ Carry out following:
 	say "(heading [aim])[line break]";
 	try going aim.
 
+After dropping the cage when the hamster is in the cage:
+	say "'squeek!'";
+
 NoHo is a room. 
 East Village is east of NoHo. 
 Lower East Side is southeast of NoHo and east of Little Italy. 
